@@ -12,5 +12,12 @@ export class PartSpeechRepo {
         return result.rows
     }
 
+    public async getSelectedCategoryOfNouns(part: string) {
+        const result = await this.dbClient.query({
+            text: `select eng, rus, transcription from nouns where section = $1`,
+            values: [part]
+        })
+        return result.rows
+    }
 
 }

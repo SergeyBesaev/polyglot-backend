@@ -12,18 +12,6 @@ export class LessonService {
         this.repo = repo.repo
     }
 
-    public async checkUnfinishedLesson(token: string): Promise<boolean> {
-
-        const dataFromAccessToken = validateAccessToken(token)
-
-        const userIdFromAccessToken: number = dataFromAccessToken.userId
-
-        const verbs: number[] =  await this.repo.checkUnfinishedLessonByUserId(userIdFromAccessToken)
-
-        return verbs.length !== 0
-
-    }
-
     public async makeRecordVerbsOnUser(token: string) {
         const dataFromAccessToken = validateAccessToken(token)
 

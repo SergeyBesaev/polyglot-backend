@@ -9,13 +9,7 @@ export function initApi(
 
     app.route('/lesson-1')
         .get(asyncHandler(async (req, res, next) => {
-            const checkingUnfinishedLesson: boolean = await service.checkUnfinishedLesson(req.headers.authorization as string)
-
-            if (checkingUnfinishedLesson) {
-                res.locals.body = "У Вас есть незаконченный урок"
-            } else {
-                res.locals.body = await service.makeRecordVerbsOnUser(req.headers.authorization as string)
-            }
+            res.locals.body = await service.makeRecordVerbsOnUser(req.headers.authorization as string)
             next()
         }))
 
@@ -46,4 +40,11 @@ export function initApi(
             res.locals.body = await speechService.returnAllWords(req.params.partOfSpeech)
             next()
         }))
+
+    app.route('/dictionary/nouns/:part')
+        .get(asyncHandler(async (req, res, next) => {
+            res.locals.body = await speechService.returnSelectedCategoryOfNouns(req.params.part)
+            next()
+        }))
+
 }

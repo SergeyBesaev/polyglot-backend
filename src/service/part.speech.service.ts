@@ -20,4 +20,10 @@ export class PartSpeechService {
         return list
     }
 
+    public async returnSelectedCategoryOfNouns(part: string) {
+        let list = await this.repo.getSelectedCategoryOfNouns(part)
+        list = shuffle(list)
+        return list
+    }
+
 }
