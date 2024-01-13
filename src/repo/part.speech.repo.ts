@@ -7,7 +7,7 @@ export class PartSpeechRepo {
 
     public async getAllWordsFromDb(partsOfSpeech: string) {
         const result = await this.dbClient.query({
-            text: `select eng, rus, section from ${partsOfSpeech}`
+            text: `select * from ${partsOfSpeech}`
         })
         return result.rows
     }
